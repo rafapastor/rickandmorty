@@ -24,3 +24,8 @@ get_rick_and_morty_characters_by_ids:
     methods: GET
     requirements:
         ids: \d+(,\d+)*
+
+rick_and_morty_characters_filter:
+    path: /rick-and-morty/characters/filter
+    controller: App\Controller\CharactersController::getFilteredCharacters
+    methods: GET

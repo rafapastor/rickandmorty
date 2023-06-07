@@ -2,9 +2,10 @@
 
 namespace App\Controller;
 
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Routing\Annotation\Route;
 use App\Service\CharactersRepository;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 class CharactersController
 {
@@ -42,4 +43,14 @@ class CharactersController
         return new JsonResponse($characters);
     }
 
+    /**
+     * @Route("/rick-and-morty/characters/filter", methods={"GET"})
+     */
+    public function getFilteredCharacters(Request $request): JsonResponse
+    {
+        $filters = $request->query->all();
+        $characters = $this->charactersRepository->getFilteredCharacters($filters);
+
+        return new JsonResponse($characters);
+    }
 }

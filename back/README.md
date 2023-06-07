@@ -22,11 +22,9 @@ We use the Repository pattern as an abstraction layer between the data access an
 
 ## Project Setup
 
-1. Clone the repository: `git clone https://github.com/<username>/rick-and-morty-api-wrapper.git`
-2. Navigate into the project directory: `cd rick-and-morty-api-wrapper`
-3. Install dependencies: `composer install`
-4. Set the `EXTERNAL_API_URL` environment variable in your `.env` file to point to the Rick and Morty API.
-5. Run the Symfony server: `symfony server:start`
+1. Install dependencies: `composer install`
+2. Set the `EXTERNAL_API_URL` environment variable in your `.env` file to point to the Rick and Morty API.
+3. Run the Symfony server: `symfony server:start`
 
 Now you can access the endpoints:
 
@@ -34,7 +32,3 @@ Now you can access the endpoints:
 - `/rick-and-morty/characters/count` to get the total number of characters
 - `/rick-and-morty/characters/{id}` to get a specific character by id
 - `/rick-and-morty/characters/{ids}` to get a list of characters by ids
-
-## Contributing
-
-We welcome contributions to this project! Please feel free to open issues or pull requests.

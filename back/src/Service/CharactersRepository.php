@@ -28,4 +28,12 @@ class CharactersRepository
         $characters = json_decode(file_get_contents($this->apiUrl . '/character/' . $ids), true);
         return $characters;
     }
+
+    public function getFilteredCharacters(array $filters): array
+    {
+        $query = http_build_query($filters);
+        $characters = json_decode(file_get_contents($this->apiUrl . '/character?' . $query), true);
+        return $characters;
+    }
+
 }

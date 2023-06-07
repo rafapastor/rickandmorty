@@ -1,0 +1,20 @@
+# Directorios
+/back/var/
+/back/public/bundles/
+/back/public/uploads/
+/back/node_modules/
+/back/vendor/
+
+# Archivos
+/back/.env
+/back/.env.local.php
+/back/.phpunit.result.cache
+/back/.php_cs.cache
+/back/build/
+/back/composer.phar
+/back/phpunit.xml
+/back/phpunit.xml.dist
+/back/.phpstorm.meta.php
+/back/.idea/
+/back/.vscode/
+/back/.DS_Store

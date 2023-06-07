@@ -1,43 +1,40 @@
-# Clicars interview - PHP coding test: API
+# Rick and Morty Characters API Wrapper
 
-## Intro
+This project provides a Symfony based wrapper for interacting with the Rick and Morty API, specifically focusing on retrieving character information. The codebase emphasizes adherence to SOLID principles and incorporates the Repository design pattern for data access. 
 
-Welcome to the recruiting process for Full Stack Engineer in Clicars.
+## SOLID Principles
 
-You have a maximum of 7 days to solve the problem explained in the link provided by email.
+In the context of this project, SOLID principles are applied as follows:
 
-When the time is over, you will have to send a compressed file with all the code generated to solve the test to 
-alvaro@clicars.com. Don't include the "vendor" folder. It contains binary files so gmail could reject it.
+- **Single Responsibility Principle (SRP)**: The `CharactersController` handles HTTP requests and delegates data access to the `CharactersRepository` service. This way, each class has a single reason to change. 
 
-If you finish the test before the time is over, it will be taken into consideration.
+- **Open-Closed Principle (OCP)**: The code is written in such a way that adding more functionality (like adding new endpoints or changing the data source) can be done by adding new code, not modifying existing code.
 
-Good luck!
+- **Liskov Substitution Principle (LSP)**: This principle is not explicitly relevant in this specific project as there are no parent-child relationships between classes.
 
-### What we look at
+- **Interface Segregation Principle (ISP)**: Currently, we have a small, well-defined interface. If we add more functionality, we could break it down into smaller, more specific interfaces.
 
-* This task is designed to give us an idea of how you approach a solution from the backend and frontend perspectives.
-* We are also interested in how clean is your code so that it's easily extendable, complies with best OO practices, 
-and easy to modify /understand by others.
-* We are also interested in seeing how you structure your code.
+- **Dependency Inversion Principle (DIP)**: Our controller depends on abstractions (the `CharactersRepository` service), not on concretions. 
 
-## How to
+## Repository Design Pattern
 
-This is an API built in Symfony framework. First you will need to install symfony-cli in your system following the 
-instructions:
-``` 
-https://symfony.com/download
-```
+We use the Repository pattern as an abstraction layer between the data access and the business logic of the application. In this case, the `CharactersRepository` handles all the interactions with the Rick and Morty API.
 
-Once Symfony is installed you can run this project typing the following command in the project path:
-``` 
-symfony server:start
-```
+## Project Setup
 
-If everything goes OK you should see the server up and running in the url of the command prompt. Just copy the url in 
-your browser and add the path '/health/check' to confirm the API is responding correctly. Or simply write in your 
-terminal:
-```
-curl http://localhost:<server_port>/health/check
-```
+1. Clone the repository: `git clone https://github.com/<username>/rick-and-morty-api-wrapper.git`
+2. Navigate into the project directory: `cd rick-and-morty-api-wrapper`
+3. Install dependencies: `composer install`
+4. Set the `EXTERNAL_API_URL` environment variable in your `.env` file to point to the Rick and Morty API.
+5. Run the Symfony server: `symfony server:start`
 
+Now you can access the endpoints:
 
+- `/rick-and-morty/characters` to get all characters
+- `/rick-and-morty/characters/count` to get the total number of characters
+- `/rick-and-morty/characters/{id}` to get a specific character by id
+- `/rick-and-morty/characters/{ids}` to get a list of characters by ids
+
+## Contributing
+
+We welcome contributions to this project! Please feel free to open issues or pull requests.

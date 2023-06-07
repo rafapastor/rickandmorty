@@ -18,3 +18,23 @@
 /back/.idea/
 /back/.vscode/
 /back/.DS_Store
+
+# dependencies
+/front/rickandmorty/node_modules
+
+# testing
+/front/rickandmorty/coverage
+
+# production
+/front/rickandmorty/build
+
+# misc
+/front/rickandmorty/.DS_Store
+/front/rickandmorty/.env.local
+/front/rickandmorty/.env.development.local
+/front/rickandmorty/.env.test.local
+/front/rickandmorty/.env.production.local
+
+/front/rickandmorty/npm-debug.log*
+/front/rickandmorty/yarn-debug.log*
+/front/rickandmorty/yarn-error.log*

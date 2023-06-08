@@ -30,7 +30,7 @@
 
 # misc
 /front/rickandmorty/.DS_Store
-/front/rickandmorty/.env.local
+/front/rickandmorty/.env
 /front/rickandmorty/.env.development.local
 /front/rickandmorty/.env.test.local
 /front/rickandmorty/.env.production.local

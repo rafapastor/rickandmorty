@@ -3,15 +3,58 @@
 @import 'tailwindcss/utilities';
 
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-color: #272B33;
+  font-family: -apple-system, 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+header {
+  background-color: #FFF;
+}
+
+main {
+  background-color: #272B33;
+}
+
+.showcase {
+  @apply flex justify-center items-center flex-wrap mx-auto max-w-screen-xl;
+}
+
+.character-card {
+  @apply bg-card-bg text-white rounded-lg overflow-hidden shadow-lg my-4;
+}
+
+.character-card .character-image-container img {
+  @apply w-full h-full object-cover;
+}
+
+.character-card .character-info-container .section {
+  @apply flex flex-grow flex-shrink-0 flex-col justify-center h-16;
+}
+
+.character-card .character-info-container .section h2 {
+  @apply text-2xl font-bold;
+}
+
+.character-card .character-info-container .section span {
+  @apply text-base text-base font-light;
+}
+
+.custom-header {
+  @apply text-black bg-white py-4 px-8 flex justify-center items-center;
+}
+
+.custom-header h1 {
+  @apply text-7xl font-extrabold py-4;
+}
+
+a:hover {
+  color: #ff9800;
+}
+
+.status-icon {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 5px;
 }

@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
-import logo from './logo.svg';
-import './App.css';
 import CharactersRepository from './repositories/CharactersRepository';
 import { Character } from './types/character';
+import CharacterCard from './components/CharacterCard';
 
 function App() {
   const [characters, setCharacters] = useState<Character[]>([]);
@@ -25,22 +24,20 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        {characters.map((character) => {
-          return <p key={character.id}>{character.name}</p>
-
-        }
-        )}
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header className="custom-header">
+        <h1>The Rick and Morty Challenge</h1>
       </header>
+      <main>
+        <div className="showcase p-8">
+          {characters.map((character) => {
+            return (
+              <div key={character.id} className="w-full md:w-1/2 2xl:w-1/3 px-4">
+                <CharacterCard character={character} />
+              </div>
+            );
+          })}
+        </div>
+      </main>
     </div>
   );
 }

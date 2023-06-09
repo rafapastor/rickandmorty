@@ -2,10 +2,21 @@ import { useEffect, useState } from 'react';
 import CharactersRepository from './repositories/CharactersRepository';
 import { Character } from './types/character';
 import CharacterCard from './components/CharacterCard';
+import Filter from './components/Filter';
+import { Filters } from './types/filter';
 
 function App() {
   const [characters, setCharacters] = useState<Character[]>([]);
   const [totalCharacters, setTotalCharacters] = useState(0);
+  const [filters, setFilters] = useState<Filters>({
+    name: '',
+    species: '',
+    type: '',
+    gender: '',
+    status: '',
+  });
+  const [isFiltered, setIsFiltered] = useState(false);
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,6 +28,10 @@ function App() {
       }
     };
 
+    const savedFilters = localStorage.getItem('filters');
+    if (savedFilters) {
+      setFilters(JSON.parse(savedFilters));
+    }
     fetchData();
   }, []);
 
@@ -44,12 +59,53 @@ function App() {
     return numbers;
   };
 
+  useEffect(() => {
+    if (isFiltered) {
+      console.log('filter mode');
+      // In "filter mode", search the characters that match the filters
+      CharactersRepository.getFilteredCharacters(filters)
+        .then((data: any) => {
+          if (data.results.length > 0) {
+            setCharacters(data.results);
+          } else {
+            setCharacters([]);
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+          setCharacters([]);
+        });
+    } else if (totalCharacters > 0) {
+      CharactersRepository.getCharacterByIds(generateRandomNumbers(totalCharacters, 5))
+        .then(setCharacters)
+        .catch(console.error);
+    }
+  }, [filters, isFiltered, totalCharacters]);
+
+  const handleFilter = (newFilters: Filters) => {
+    setIsFiltered(true);
+    setFilters(newFilters);
+    localStorage.setItem('filters', JSON.stringify(newFilters));
+  };
+
+  const handleClear = () => {
+    setIsFiltered(false);
+    setFilters({
+      name: '',
+      species: '',
+      type: '',
+      gender: '',
+      status: '',
+    });
+  };
+
   return (
     <div className="App">
       <header className="custom-header">
         <h1>The Rick and Morty Challenge</h1>
       </header>
       <main>
+        <Filter onFilter={handleFilter} onClear={handleClear} />
         <div className="showcase p-8">
           {characters.map((character) => {
             return (

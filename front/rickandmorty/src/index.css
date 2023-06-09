@@ -36,7 +36,7 @@ main {
 }
 
 .character-card .character-info-container .section span {
-  @apply text-base text-base font-light;
+  @apply text-base font-light;
 }
 
 .custom-header {

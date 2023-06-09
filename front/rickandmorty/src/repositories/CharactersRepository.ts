@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 import { Character } from '../types/character';
+import { Filters } from '../types/filter';
 
 const baseURL = process.env.REACT_APP_API_URL;
 
@@ -20,7 +21,7 @@ const CharactersRepository = {
         return response.data;
     },
 
-    getFilteredCharacters: async (filters: any): Promise<Character[]> => {
+    getFilteredCharacters: async (filters: Filters): Promise<Character[]> => {
         const response: AxiosResponse<Character[]> = await axios.get(`${baseURL}/rick-and-morty/characters/filter`, { params: filters });
         return response.data;
     },

@@ -5,22 +5,44 @@ import CharacterCard from './components/CharacterCard';
 
 function App() {
   const [characters, setCharacters] = useState<Character[]>([]);
+  const [totalCharacters, setTotalCharacters] = useState(0);
 
   useEffect(() => {
-    CharactersRepository.getCharactersCount().then((count) => {
-      console.log(count);
-      // get 5 numbers between 1 and count
-      const randomNumbers = [];
-      for (let i = 0; i < 5; i++) {
-        randomNumbers.push(Math.floor(Math.random() * count) + 1);
+    const fetchData = async () => {
+      try {
+        const count = await CharactersRepository.getCharactersCount();
+        setTotalCharacters(count);
+      } catch (error) {
+        console.error(error);
       }
-      // getCharacterByIds of the random numbers
-      CharactersRepository.getCharacterByIds(randomNumbers).then((characters) => {
-        setCharacters(characters);
-      }
-      );
-    });
+    };
+
+    fetchData();
   }, []);
+
+  useEffect(() => {
+    if (totalCharacters > 0) {
+      const randomNumbers = generateRandomNumbers(totalCharacters, 5);
+      CharactersRepository.getCharacterByIds(randomNumbers)
+        .then((characters) => {
+          setCharacters(characters);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  }, [totalCharacters]);
+
+  const generateRandomNumbers = (max: number, count: number): number[] => {
+    const numbers: number[] = [];
+    while (numbers.length < count) {
+      const randomNumber = Math.floor(Math.random() * max) + 1;
+      if (!numbers.includes(randomNumber)) {
+        numbers.push(randomNumber);
+      }
+    }
+    return numbers;
+  };
 
   return (
     <div className="App">

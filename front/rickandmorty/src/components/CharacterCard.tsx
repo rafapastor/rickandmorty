@@ -26,7 +26,8 @@ const CharacterCard = ({ character }: CharacterCardProps) => {
             <div className="character-info-container w-2/3 p-3">
                 <div className="section">
                     <a href={character.url}
-                        target='_blank'>
+                        target='_blank'
+                        rel="noreferrer">
                         <h2>
                             {character.name}
                         </h2>
@@ -40,7 +41,8 @@ const CharacterCard = ({ character }: CharacterCardProps) => {
                     <span className="text-custom-gray">Last known location:</span>
                     <span className="text-lg">
                         <a href={character.location.url}
-                            target='_blank'>
+                            target='_blank'
+                            rel="noreferrer">
                             {character.location.name}
                         </a>
                     </span>
@@ -49,7 +51,8 @@ const CharacterCard = ({ character }: CharacterCardProps) => {
                     <span className="text-custom-gray">First seen in:</span>
                     <span className="text-lg">
                         <a href={character.origin.url}
-                            target='_blank'>
+                            target='_blank'
+                            rel="noreferrer">
                             {character.origin.name}
                         </a>
                     </span>

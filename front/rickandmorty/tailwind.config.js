@@ -7,6 +7,7 @@ module.exports = {
       colors: {
         'card-bg': '#3B3E43',
         'custom-gray': 'rgb(158, 158, 158)',
+        'custom-gray-button': '#58667c',
       }
     },
   },

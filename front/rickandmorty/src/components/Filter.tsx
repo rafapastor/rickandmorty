@@ -122,8 +122,8 @@ const Filter = ({
                 </div>
             </div>
             <div className="mt-5">
-                <button onClick={handleFilter} className="mr-2 py-2 px-4 bg-blue-500 text-white rounded">Filter</button>
-                <button onClick={handleClear} className="py-2 px-4 bg-red-500 text-white rounded">Clear</button>
+                <button onClick={handleFilter} className="mr-2 py-1 px-4 bg-custom-gray-button text-white rounded-3xl">Filter</button>
+                <button onClick={handleClear} className="py-1 px-4 bg-red-500 text-white rounded-3xl">Clear</button>
             </div>
         </div>
     );

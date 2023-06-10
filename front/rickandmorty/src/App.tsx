@@ -3,7 +3,7 @@ import CharactersRepository from './repositories/CharactersRepository';
 import { Character } from './types/character';
 import CharacterCard from './components/CharacterCard';
 import Filter from './components/Filter';
-import { Filters, GenderType, StatusType } from './types/filter';
+import { Filters } from './types/filter';
 
 function App() {
   const [characters, setCharacters] = useState<Character[]>([]);
@@ -16,7 +16,6 @@ function App() {
     status: '',
   });
   const [isFiltered, setIsFiltered] = useState(false);
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -46,19 +45,6 @@ function App() {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    if (totalCharacters > 0) {
-      const randomNumbers = generateRandomNumbers(totalCharacters, 5);
-      CharactersRepository.getCharacterByIds(randomNumbers)
-        .then((characters) => {
-          setCharacters(characters);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }
-  }, [totalCharacters]);
-
   const generateRandomNumbers = (max: number, count: number): number[] => {
     const numbers: number[] = [];
     while (numbers.length < count) {
@@ -71,26 +57,27 @@ function App() {
   };
 
   useEffect(() => {
-    if (isFiltered) {
-      console.log('filter mode');
-      // In "filter mode", search the characters that match the filters
-      CharactersRepository.getFilteredCharacters(filters)
-        .then((data: any) => {
+    const fetchData = async () => {
+      try {
+        if (isFiltered) {
+          const data: any = await CharactersRepository.getFilteredCharacters(filters);
           if (data.results.length > 0) {
             setCharacters(data.results);
           } else {
             setCharacters([]);
           }
-        })
-        .catch((error) => {
-          console.error(error);
-          setCharacters([]);
-        });
-    } else if (totalCharacters > 0) {
-      CharactersRepository.getCharacterByIds(generateRandomNumbers(totalCharacters, 5))
-        .then(setCharacters)
-        .catch(console.error);
-    }
+        } else if (totalCharacters > 0) {
+          const randomNumbers = generateRandomNumbers(totalCharacters, 5);
+          const characters = await CharactersRepository.getCharacterByIds(randomNumbers);
+          setCharacters(characters);
+        }
+      } catch (error) {
+        console.error(error);
+        setCharacters([]);
+      }
+    };
+
+    fetchData();
   }, [filters, isFiltered, totalCharacters]);
 
   const handleFilter = (newFilters: Filters) => {

@@ -1,6 +1,6 @@
 # Rick and Morty Challenge
 
-This application serves as a demonstration of a React frontend and a Node.js backend combined to provide an engaging and responsive user experience. It utilizes the Rick and Morty API to display character information and provide filtering capabilities.
+This application serves as a demonstration of a React frontend and a Symfony backend combined to provide an engaging and responsive user experience. It utilizes the Rick and Morty API to display character information and provide filtering capabilities.
 
 ## Backend
 

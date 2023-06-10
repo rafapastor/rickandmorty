@@ -19,6 +19,12 @@ main {
   @apply flex justify-center items-center flex-wrap mx-auto max-w-screen-xl;
 }
 
+@media (min-width: 1600px) {
+  .showcase {
+    @apply max-w-screen-2xl;
+  }
+}
+
 .character-card {
   @apply bg-card-bg text-white rounded-lg overflow-hidden shadow-lg my-4;
 }

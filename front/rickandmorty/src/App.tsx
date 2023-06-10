@@ -107,7 +107,7 @@ function App() {
           onClear={handleClear}
           filters={filters}
         />
-        <div className="showcase p-8">
+        <div className="showcase p-8 lg:p-0">
           {characters.map((character) => {
             return (
               <div key={character.id} className="w-full md:w-1/2 2xl:w-1/3 px-4">

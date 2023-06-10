@@ -65,7 +65,7 @@ const Filter = ({
     return (
         <div className="p-5 m-5 border rounded">
             <div className="flex flex-wrap">
-                <div className="w-full sm:w-1/5 mb-2 sm:mb-0 flex items-center justify-center flex-shrink-0">
+                <div className="w-full sm:w-1/2 md:w-1/3 xl:w-1/5 mb-2 xl:mb-0 flex items-center sm:justify-start justify-center flex-shrink-0">
                     <label className="text-white">Name:</label>
                     <input
                         type="text"
@@ -77,7 +77,7 @@ const Filter = ({
                         className="ml-2 text-white bg-gray-800 rounded-lg border border-white"
                     />
                 </div>
-                <div className="w-full sm:w-1/5 mb-2 sm:mb-0 flex items-center justify-center flex-shrink-0">
+                <div className="w-full sm:w-1/2 md:w-1/3 xl:w-1/5 mb-2 xl:mb-0 flex items-center sm:justify-start justify-center flex-shrink-0">
                     <label className="text-white">Species:</label>
                     <input
                         type="text"
@@ -89,7 +89,7 @@ const Filter = ({
                         className="ml-2 text-white bg-gray-800 rounded-lg border border-white"
                     />
                 </div>
-                <div className="w-full sm:w-1/5 mb-2 sm:mb-0 flex items-center justify-center flex-shrink-0">
+                <div className="w-full sm:w-1/2 md:w-1/3 xl:w-1/5 mb-2 xl:mb-0 flex items-center sm:justify-start justify-center flex-shrink-0">
                     <label className="text-white">Type:</label>
                     <input
                         type="text"
@@ -101,7 +101,7 @@ const Filter = ({
                         className="ml-2 text-white bg-gray-800 rounded-lg border border-white"
                     />
                 </div>
-                <div className="w-full sm:w-1/5 mb-2 sm:mb-0 flex items-center justify-center flex-shrink-0">
+                <div className="w-full sm:w-1/2 md:w-1/3 xl:w-1/5 mb-2 xl:mb-0 flex items-center sm:justify-start justify-center flex-shrink-0">
                     <label className="text-white">Gender:</label>
                     <select value={gender} onChange={(e) => setGender(e.target.value as GenderType)} className="ml-2 text-white bg-gray-800 rounded-lg p-2 border border-white">
                         <option value="">Select gender</option>
@@ -111,7 +111,7 @@ const Filter = ({
                         <option value="unknown">Unknown</option>
                     </select>
                 </div>
-                <div className="w-full sm:w-1/5 mb-2 sm:mb-0 flex items-center justify-center flex-shrink-0">
+                <div className="w-full sm:w-1/2 md:w-1/3 xl:w-1/5 mb-2 xl:mb-0 flex items-center sm:justify-start justify-center flex-shrink-0">
                     <label className="text-white">Status:</label>
                     <select value={status} onChange={(e) => setStatus(e.target.value as StatusType)} className="ml-2 text-white bg-gray-800 rounded-lg p-2 border border-white">
                         <option value="">Select status</option>

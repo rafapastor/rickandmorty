@@ -3,7 +3,7 @@ import CharactersRepository from './repositories/CharactersRepository';
 import { Character } from './types/character';
 import CharacterCard from './components/CharacterCard';
 import Filter from './components/Filter';
-import { Filters } from './types/filter';
+import { Filters, GenderType, StatusType } from './types/filter';
 
 function App() {
   const [characters, setCharacters] = useState<Character[]>([]);
@@ -26,12 +26,23 @@ function App() {
       } catch (error) {
         console.error(error);
       }
+
+      // Obtén los filtros de la URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const newFilters = ['name', 'species', 'type', 'gender', 'status'].reduce((filters, key) => {
+        const value = urlParams.get(key);
+        if (value) {
+          (filters as unknown as { [key: string]: string })[key] = value;
+        }
+        return filters;
+      }, {} as Filters);
+
+      if (Object.keys(newFilters).length > 0) {
+        setFilters(newFilters);
+        setIsFiltered(true);
+      }
     };
 
-    const savedFilters = localStorage.getItem('filters');
-    if (savedFilters) {
-      setFilters(JSON.parse(savedFilters));
-    }
     fetchData();
   }, []);
 
@@ -85,7 +96,6 @@ function App() {
   const handleFilter = (newFilters: Filters) => {
     setIsFiltered(true);
     setFilters(newFilters);
-    localStorage.setItem('filters', JSON.stringify(newFilters));
   };
 
   const handleClear = () => {
@@ -105,7 +115,11 @@ function App() {
         <h1>The Rick and Morty Challenge</h1>
       </header>
       <main>
-        <Filter onFilter={handleFilter} onClear={handleClear} />
+        <Filter
+          onFilter={handleFilter}
+          onClear={handleClear}
+          filters={filters}
+        />
         <div className="showcase p-8">
           {characters.map((character) => {
             return (

@@ -1,19 +1,29 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Filters, GenderType, StatusType } from '../types/filter';
 
 const Filter = ({
     onFilter,
-    onClear }
-    : {
-        onFilter: (filters: Filters) => void;
-        onClear: () => void;
-    }
+    onClear,
+    filters,
+}: {
+    onFilter: (filters: Filters) => void;
+    onClear: () => void;
+    filters: Filters;
+}
 ) => {
-    const [name, setName] = useState('');
-    const [species, setSpecies] = useState('');
-    const [type, setType] = useState('');
-    const [gender, setGender] = useState<GenderType | ''>('');
-    const [status, setStatus] = useState<StatusType | ''>('');
+    const [name, setName] = useState(filters.name);
+    const [species, setSpecies] = useState(filters.species);
+    const [type, setType] = useState(filters.type);
+    const [gender, setGender] = useState(filters.gender);
+    const [status, setStatus] = useState(filters.status);
+
+    useEffect(() => {
+        setName(filters.name);
+        setSpecies(filters.species);
+        setType(filters.type);
+        setGender(filters.gender);
+        setStatus(filters.status);
+    }, [filters]);
 
     const handleFilter = () => {
         const filters = {
@@ -23,6 +33,16 @@ const Filter = ({
             gender,
             status,
         };
+        const queryParams = new URLSearchParams(window.location.search);
+        Object.keys(filters).forEach((key) => {
+            const value = (filters as any)[key];
+            if (value) {
+                queryParams.set(key, value);
+            } else {
+                queryParams.delete(key);
+            }
+        });
+        window.history.pushState({}, '', "?" + queryParams.toString());
         onFilter(filters);
     };
 
@@ -33,6 +53,13 @@ const Filter = ({
         setGender('');
         setStatus('');
         onClear();
+
+        // Delete all query params
+        const queryParams = new URLSearchParams(window.location.search);
+        Object.keys(filters).forEach((key) => {
+            queryParams.delete(key);
+        });
+        window.history.pushState({}, '', "?" + queryParams.toString());
     };
 
     return (
@@ -40,15 +67,39 @@ const Filter = ({
             <div className="flex flex-wrap">
                 <div className="w-full sm:w-1/5 mb-2 sm:mb-0 flex items-center justify-center flex-shrink-0">
                     <label className="text-white">Name:</label>
-                    <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="ml-2 text-white bg-gray-800 rounded-lg border border-white" />
+                    <input
+                        type="text"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        onKeyDown={(e) => {
+                            if (e.key === 'Enter') handleFilter();
+                        }}
+                        className="ml-2 text-white bg-gray-800 rounded-lg border border-white"
+                    />
                 </div>
                 <div className="w-full sm:w-1/5 mb-2 sm:mb-0 flex items-center justify-center flex-shrink-0">
                     <label className="text-white">Species:</label>
-                    <input type="text" value={species} onChange={(e) => setSpecies(e.target.value)} className="ml-2 text-white bg-gray-800 rounded-lg border border-white" />
+                    <input
+                        type="text"
+                        value={species}
+                        onChange={(e) => setSpecies(e.target.value)}
+                        onKeyDown={(e) => {
+                            if (e.key === 'Enter') handleFilter();
+                        }}
+                        className="ml-2 text-white bg-gray-800 rounded-lg border border-white"
+                    />
                 </div>
                 <div className="w-full sm:w-1/5 mb-2 sm:mb-0 flex items-center justify-center flex-shrink-0">
                     <label className="text-white">Type:</label>
-                    <input type="text" value={type} onChange={(e) => setType(e.target.value)} className="ml-2 text-white bg-gray-800 rounded-lg border border-white" />
+                    <input
+                        type="text"
+                        value={type}
+                        onChange={(e) => setType(e.target.value)}
+                        onKeyDown={(e) => {
+                            if (e.key === 'Enter') handleFilter();
+                        }}
+                        className="ml-2 text-white bg-gray-800 rounded-lg border border-white"
+                    />
                 </div>
                 <div className="w-full sm:w-1/5 mb-2 sm:mb-0 flex items-center justify-center flex-shrink-0">
                     <label className="text-white">Gender:</label>

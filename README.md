@@ -25,7 +25,7 @@ To run this project locally, you need to have Composer and npm installed.
 Clone this repository:
 
 \`\`\`
-git clone https://github.com/your-repo/rick-and-morty-challenge.git
+git clone https://github.com/rafapastor/rickandmorty.git
 \`\`\`
 
 Please navigate to both the back and front directories, and follow the respective setup instructions, REAMDE.md, for each environment. Both environments must be running concurrently to execute the application successfully.

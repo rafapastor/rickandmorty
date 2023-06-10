@@ -15,7 +15,9 @@ This project is a frontend development challenge using React, TypeScript, Axios,
 
 1. Clone the repository.
 2. Navigate to the project directory: `cd front/rickandmorty`
-3. Install the dependencies: `npm install`
+3. Copy the contents of `.env.example` to a new file in the same directory named `.env`, and fill the variables with the appropriate values.
+4. Install the dependencies: `npm install`
+
 
 ## Usage
 

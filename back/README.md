@@ -23,7 +23,7 @@ We use the Repository pattern as an abstraction layer between the data access an
 ## Project Setup
 
 1. Install dependencies: `composer install`
-2. Set the `EXTERNAL_API_URL` environment variable in your `.env` file to point to the Rick and Morty API.
+2. Copy the contents of `.env.example` to a new file in the same directory named `.env`, and fill the variables with the appropriate values.
 3. Run the Symfony server: `symfony server:start`
 
 Now you can access the endpoints:
